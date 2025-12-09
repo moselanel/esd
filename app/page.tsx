@@ -2,7 +2,6 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowRight, Users, BarChart3, Network, Building2, TrendingUp, Shield } from "lucide-react"
-import Image from "next/image"
 
 export default function HomePage() {
   return (
@@ -12,13 +11,12 @@ export default function HomePage() {
         <div className="container mx-auto px-4 py-24 md:py-32">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-8 flex justify-center">
-              <Image
-                src="/images/bauba-logo.png"
-                alt="Bauba Resources"
-                width={200}
-                height={54}
-                className="h-12 w-auto"
-              />
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center">
+                  <Building2 className="w-7 h-7 text-accent-foreground" />
+                </div>
+                <span className="text-3xl font-bold">ESD Platform</span>
+              </div>
             </div>
 
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent-foreground mb-6">
@@ -31,8 +29,8 @@ export default function HomePage() {
             </h1>
 
             <p className="text-xl text-muted-foreground mb-8 text-pretty max-w-2xl mx-auto leading-relaxed">
-              Bauba Resources' comprehensive platform for managing supplier development, tracking transformation impact,
-              and building inclusive procurement ecosystems in South Africa's mining and resources sector.
+              A comprehensive platform for managing supplier development, tracking transformation impact, and building
+              inclusive procurement ecosystems in South Africa's mining and resources sector.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -237,8 +235,7 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Ready to Transform Your Supply Chain?</h2>
             <p className="text-lg text-muted-foreground mb-8 text-pretty">
-              Join Bauba Resources and leading mining companies in building inclusive, compliant, and high-performing
-              supplier ecosystems.
+              Join leading mining companies in building inclusive, compliant, and high-performing supplier ecosystems.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/dashboard">

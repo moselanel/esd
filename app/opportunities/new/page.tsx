@@ -77,7 +77,7 @@ export default function NewOpportunityPage() {
                 <Label htmlFor="title">Opportunity Title *</Label>
                 <Input
                   id="title"
-                  placeholder="e.g., Mining Equipment Supply - Platinum Project"
+                  placeholder="e.g., Equipment Supply - Industrial Project"
                   value={formData.title}
                   onChange={(e) => setFormData((prev) => ({ ...prev, title: e.target.value }))}
                   required

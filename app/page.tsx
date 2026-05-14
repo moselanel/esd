@@ -30,7 +30,7 @@ export default function HomePage() {
 
             <p className="text-xl text-muted-foreground mb-8 text-pretty max-w-2xl mx-auto leading-relaxed">
               A comprehensive platform for managing supplier development, tracking transformation impact,
-              and building inclusive procurement ecosystems in South Africa's mining and resources sector.
+              and building inclusive procurement ecosystems across South African industries.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -160,8 +160,8 @@ export default function HomePage() {
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Why ESD Platform?</h2>
               <p className="text-lg text-muted-foreground text-pretty">
-                Built for South African mining and resources companies committed to transformation
-              </p>
+              Built for South African companies committed to transformation
+            </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -190,7 +190,7 @@ export default function HomePage() {
                   <h3 className="font-semibold text-lg mb-2">Impact Measurement</h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Track transformation KPIs including BWO spend, youth-owned enterprises, disability-owned suppliers,
-                    job creation, and skills development with mining charter alignment.
+                    job creation, and skills development aligned with your applicable B-BBEE sector code.
                   </p>
                 </div>
               </div>
@@ -220,7 +220,7 @@ export default function HomePage() {
                   <h3 className="font-semibold text-lg mb-2">Inclusive Procurement</h3>
                   <p className="text-muted-foreground leading-relaxed">
                     Build diverse supply chains with tools for localisation, community supplier development, and
-                    equitable access to business opportunities in mining communities.
+                    equitable access to business opportunities in local communities.
                   </p>
                 </div>
               </div>
@@ -235,7 +235,7 @@ export default function HomePage() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance">Ready to Transform Your Supply Chain?</h2>
             <p className="text-lg text-muted-foreground mb-8 text-pretty">
-              Join leading mining companies in building inclusive, compliant, and high-performing supplier ecosystems.
+              Join leading companies in building inclusive, compliant, and high-performing supplier ecosystems.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/dashboard">

@@ -12,7 +12,7 @@ import { Building2, MapPin, Star, CheckCircle2, Calendar, DollarSign, Briefcase,
 const matchedSuppliers = [
   {
     id: 1,
-    name: "African Mining Supplies",
+    name: "African Industrial Supplies",
     category: "Equipment Supply",
     location: "Limpopo",
     rating: 4.8,
@@ -42,7 +42,7 @@ const matchedSuppliers = [
   },
   {
     id: 3,
-    name: "Superior Mining Tech",
+    name: "Superior Industrial Tech",
     category: "Equipment Supply",
     location: "North West",
     rating: 4.9,
@@ -65,13 +65,13 @@ export default function OpportunityMatchesPage() {
 
   const opportunity = {
     id: 1,
-    title: "Mining Equipment Supply - Platinum Project",
+    title: "Equipment Supply - Industrial Project",
     category: "Equipment Supply",
     location: "Limpopo",
     budget: "R5M - R10M",
     deadline: "2024-12-30",
     description:
-      "Supply and maintenance of mining equipment for our Platinum operations including drill bits, safety gear, pumps, and ventilation systems.",
+      "Supply and maintenance of industrial equipment for operations including machinery, safety gear, pumps, and ventilation systems.",
     requiredCapabilities: ["Equipment Supply", "Maintenance & Repair"],
   }
 

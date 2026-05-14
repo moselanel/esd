@@ -27,8 +27,8 @@ import {
 
 // Sector codes for B-BBEE
 const sectorCodes = [
-  { code: "Mining", description: "Mining and Quarrying Sector Code", version: "Amendment Gazette 44890" },
   { code: "Generic", description: "Generic Codes of Good Practice", version: "Amendment Gazette 42496" },
+  { code: "Mining", description: "Mining and Quarrying Sector Code", version: "Amendment Gazette 44890" },
   { code: "Construction", description: "Construction Sector Code", version: "Amendment Gazette 40175" },
   { code: "Finance", description: "Financial Sector Code", version: "Amendment Gazette 40917" },
   { code: "ICT", description: "Information and Communication Technology Sector Code", version: "Amendment Gazette 39677" },
@@ -56,7 +56,7 @@ const scorecardTargets = {
 }
 
 export default function SettingsPage() {
-  const [selectedSectorCode, setSelectedSectorCode] = useState("Mining")
+  const [selectedSectorCode, setSelectedSectorCode] = useState("Generic")
   const [annualTarget, setAnnualTarget] = useState("20250000")
   const [notifyExpiry, setNotifyExpiry] = useState(true)
   const [expiryDays, setExpiryDays] = useState([60])
@@ -66,7 +66,7 @@ export default function SettingsPage() {
   const [saveSuccess, setSaveSuccess] = useState(false)
 
   // Custom targets state
-  const [customTargets, setCustomTargets] = useState(scorecardTargets.Mining)
+  const [customTargets, setCustomTargets] = useState(scorecardTargets.Generic)
 
   const handleSave = async () => {
     setIsSaving(true)

@@ -114,7 +114,7 @@ const currentMonthIndex = 10 // November (0-indexed)
 const currentMonthData = monthlySpendTrackingData[currentMonthIndex]
 
 const COLORS = [
-  "hsl(190, 85%, 50%)", // Cyan - matches Bauba branding
+  "hsl(190, 85%, 50%)", // Cyan - primary accent
   "hsl(220, 85%, 60%)", // Blue
   "hsl(280, 65%, 60%)", // Purple
   "hsl(160, 70%, 50%)", // Teal
@@ -187,7 +187,7 @@ const JOURNEY_COLORS = ["#22d3ee", "#10b981", "#f59e0b", "#8b5cf6", "#ef4444"]
 const programmesData = [
   {
     id: 1,
-    name: "Mining Equipment Supplier Development",
+    name: "Equipment Supplier Development",
     status: "Active",
     suppliers: 45,
     budget: 2500000,
@@ -1320,7 +1320,7 @@ export default function DashboardPage() {
                     <p className="text-lg font-bold">R {((bwoSpend + predictedImpact) / 1000000).toFixed(0)}M</p>
                   </div>
                   <div className="text-center p-3 bg-muted/50 rounded-lg">
-                    <p className="text-muted-foreground mb-1">Mining Charter Alignment</p>
+                          <p className="text-muted-foreground mb-1">Sector Code Alignment</p>
                     <p className="text-lg font-bold text-accent">
                       {Math.min(100, Math.round(((bwoSpend + predictedImpact) / totalSpend) * 100))}%
                     </p>
@@ -1386,7 +1386,7 @@ export default function DashboardPage() {
 
                 <div className="bg-muted/50 border rounded-lg p-4">
                   <p className="text-sm text-muted-foreground">
-                    <strong>Note:</strong> ROI calculations are based on industry benchmarks for ESD investments in the mining sector. 
+                      <strong>Note:</strong> ROI calculations are based on industry benchmarks for ESD investments.
                     Actual results may vary based on programme implementation, supplier capacity, and market conditions.
                     The multiplier effect includes direct, indirect, and induced economic impacts.
                   </p>

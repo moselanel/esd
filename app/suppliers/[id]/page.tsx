@@ -72,7 +72,7 @@ const interventionsData = [
     id: 2,
     date: "2024-10-22",
     type: "Training",
-    description: "Health & Safety compliance training for mining operations. 8 employees attended the 2-day workshop. All participants certified.",
+    description: "Health & Safety compliance training for industrial operations. 8 employees attended the 2-day workshop. All participants certified.",
     practitioner: "James Nkosi",
     status: "Completed",
   },
@@ -150,7 +150,7 @@ const complianceDocuments = [
 const skillsTrainingData = [
   {
     id: 1,
-    programme: "Mining Safety Management",
+    programme: "Workplace Safety Management",
     nqfLevel: 5,
     beneficiaries: 12,
     spend: 85000,
@@ -231,24 +231,24 @@ export default function SupplierDetailPage({ params }: { params: { id: string } 
 
   const supplier = {
     id: params.id,
-    name: "Thabo Mining Supplies",
+    name: "Thabo Industrial Supplies",
     registrationNumber: "2018/123456/07",
     taxNumber: "9876543210",
     covidaNumber: "U123456",
     bankAccountNumber: "1234567890",
     category: "Equipment Supply",
     location: "Rustenburg, North West",
-    email: "info@thabomining.co.za",
+    email: "info@thaboindustrial.co.za",
     phone: "+27 14 555 0123",
     bwoOwned: true,
     verified: true,
     rating: 4.8,
     stage: "Growth",
     classification: "QSE",
-    description:
-      "Thabo Mining Supplies is a leading provider of high-quality mining equipment and supplies. With over 6 years of experience, we specialize in drill bits, safety gear, pumps, and ventilation systems for the mining industry.",
-    equipment:
-      "Full range of mining equipment including drill bits, safety gear, pumps, and ventilation systems. ISO 9001 certified facilities.",
+  description:
+    "Thabo Industrial Supplies is a leading provider of high-quality industrial equipment and supplies. With over 6 years of experience, we specialize in machinery, safety gear, pumps, and ventilation systems for various industries.",
+  equipment:
+    "Full range of industrial equipment including machinery, safety gear, pumps, and ventilation systems. ISO 9001 certified facilities.",
     services: [
       "Drill Bits & Consumables",
       "Safety Equipment",

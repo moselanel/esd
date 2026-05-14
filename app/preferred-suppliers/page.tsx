@@ -27,7 +27,7 @@ import Link from "next/link"
 const preferredSuppliers = [
   {
     id: 1,
-    name: "Thabo Mining Supplies",
+    name: "Thabo Industrial Supplies",
     category: "Equipment Supply",
     location: "Rustenburg, North West",
     classification: "QSE",
@@ -38,7 +38,7 @@ const preferredSuppliers = [
     expiryDate: "2025-06-30",
     onTimeDelivery: 96,
     qualityScore: 98.5,
-    email: "info@thabomining.co.za",
+    email: "info@thaboindustrial.co.za",
     phone: "+27 14 555 0123",
   },
   {

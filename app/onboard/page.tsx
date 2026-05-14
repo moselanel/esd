@@ -162,7 +162,7 @@ export default function OnboardPage() {
 
     // Auto-fill company name if verified
     if (cipcResult.status === "verified" && !formData.companyName) {
-      updateFormData("companyName", "ABC Mining Supplies (Pty) Ltd")
+      updateFormData("companyName", "ABC Industrial Supplies (Pty) Ltd")
     }
 
     setIsVerifying(false)
@@ -191,7 +191,7 @@ export default function OnboardPage() {
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold mb-2">SMME Supplier Onboarding</h1>
-          <p className="text-muted-foreground">Complete your profile to join Bauba Resources ESD Network</p>
+          <p className="text-muted-foreground">Complete your profile to join the ESD Network</p>
         </div>
 
         {/* Progress Stepper */}
@@ -317,7 +317,7 @@ export default function OnboardPage() {
                   <Label htmlFor="companyName">Company Name</Label>
                   <Input
                     id="companyName"
-                    placeholder="e.g., ABC Mining Supplies (Pty) Ltd"
+                    placeholder="e.g., ABC Industrial Supplies (Pty) Ltd"
                     value={formData.companyName}
                     onChange={(e) => updateFormData("companyName", e.target.value)}
                   />
@@ -375,7 +375,7 @@ export default function OnboardPage() {
                         <SelectValue placeholder="Select industry" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="mining">Mining Equipment & Supplies</SelectItem>
+                        <SelectItem value="manufacturing">Manufacturing & Equipment</SelectItem>
                         <SelectItem value="construction">Construction & Engineering</SelectItem>
                         <SelectItem value="transport">Transport & Logistics</SelectItem>
                         <SelectItem value="catering">Catering & Hospitality</SelectItem>

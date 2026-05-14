@@ -33,12 +33,12 @@ import Link from "next/link"
 
 // Mock supplier data for portal view
 const supplierProfile = {
-  name: "Thabo Mining Supplies",
+  name: "Thabo Industrial Supplies",
   registrationNumber: "2018/123456/07",
   taxNumber: "9876543210",
   category: "Equipment Supply",
   location: "Rustenburg, North West",
-  email: "info@thabomining.co.za",
+  email: "info@thaboindustrial.co.za",
   phone: "+27 14 555 0123",
   bwoOwned: true,
   rating: 4.8,
@@ -68,7 +68,7 @@ const performanceMetrics = {
 const opportunities = [
   {
     id: 1,
-    title: "Mining Equipment Supply - Q1 2025",
+    title: "Equipment Supply - Q1 2025",
     value: "R 1.5M - R 2.5M",
     deadline: "2024-12-15",
     status: "Open",
@@ -86,7 +86,7 @@ const opportunities = [
 
 const trainingHistory = [
   {
-    programme: "Mining Safety Management",
+    programme: "Workplace Safety Management",
     date: "2024-09-15",
     beneficiaries: 12,
     status: "Completed",
@@ -549,7 +549,7 @@ export default function SupplierPortalPage() {
                 <div className="text-sm space-y-1">
                   <p className="flex items-center gap-2">
                     <Mail className="w-3 h-3" />
-                    sarah.molefe@bauba.co.za
+                          sarah.molefe@esdplatform.co.za
                   </p>
                   <p className="flex items-center gap-2">
                     <Phone className="w-3 h-3" />

@@ -1,10 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Building2, Users, LayoutDashboard, Briefcase, Home, Menu, X } from "lucide-react"
+import { Building2, Users, LayoutDashboard, Briefcase, Home, Menu, X, Layers } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 
@@ -25,8 +24,10 @@ export function Navigation() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/images/bauba-logo.png" alt="Bauba Resources" width={120} height={32} className="h-8 w-auto" />
-            <span className="text-sm text-muted-foreground font-medium border-l border-border pl-3">ESD Platform</span>
+            <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center">
+              <Layers className="w-5 h-5 text-accent-foreground" />
+            </div>
+            <span className="font-semibold text-lg">ESD Platform</span>
           </Link>
 
           {/* Desktop Navigation */}

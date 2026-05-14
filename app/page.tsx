@@ -1,8 +1,7 @@
 import Link from "next/link"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowRight, Users, BarChart3, Network, Building2, TrendingUp, Shield } from "lucide-react"
+import { ArrowRight, Users, BarChart3, Network, Building2, TrendingUp, Shield, Layers } from "lucide-react"
 
 export default function HomePage() {
   return (
@@ -13,14 +12,10 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-8 flex justify-center">
               <div className="flex flex-col items-center gap-2">
-                <Image
-                  src="/images/bauba-logo.png"
-                  alt="Bauba Resources"
-                  width={200}
-                  height={53}
-                  className="h-12 w-auto"
-                />
-                <span className="text-sm text-muted-foreground font-medium">ESD Platform</span>
+                <div className="w-16 h-16 rounded-xl bg-accent flex items-center justify-center">
+                  <Layers className="w-9 h-9 text-accent-foreground" />
+                </div>
+                <span className="text-xl font-semibold mt-2">ESD Platform</span>
               </div>
             </div>
 
@@ -34,7 +29,7 @@ export default function HomePage() {
             </h1>
 
             <p className="text-xl text-muted-foreground mb-8 text-pretty max-w-2xl mx-auto leading-relaxed">
-              Bauba Resources' comprehensive platform for managing supplier development, tracking transformation impact,
+              A comprehensive platform for managing supplier development, tracking transformation impact,
               and building inclusive procurement ecosystems in South Africa's mining and resources sector.
             </p>
 

@@ -15,8 +15,10 @@ export function Navigation() {
     { href: "/", label: "Home", icon: Home },
     { href: "/onboard", label: "Onboard Supplier", icon: Users },
     { href: "/suppliers", label: "Suppliers", icon: Building2 },
+    { href: "/preferred-suppliers", label: "Preferred", icon: Star },
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/opportunities", label: "Opportunities", icon: Briefcase },
+    { href: "/settings", label: "Settings", icon: Settings },
   ]
 
   return (

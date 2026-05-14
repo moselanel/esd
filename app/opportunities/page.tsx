@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 const opportunities = [
   {
     id: 1,
-    title: "Mining Equipment Supply - Platinum Project",
+    title: "Equipment Supply - Industrial Project",
     category: "Equipment Supply",
     location: "Limpopo",
     budget: "R5M - R10M",
@@ -20,7 +20,7 @@ const opportunities = [
     status: "open",
     matchedSuppliers: 24,
     requiredCapabilities: ["Equipment Supply", "Maintenance & Repair"],
-    description: "Supply and maintenance of mining equipment for our Platinum operations.",
+    description: "Supply and maintenance of industrial equipment for operations.",
     postedDate: "2024-11-15",
   },
   {
@@ -46,7 +46,7 @@ const opportunities = [
     status: "open",
     matchedSuppliers: 12,
     requiredCapabilities: ["Security Services", "Access Control"],
-    description: "Comprehensive security services for mining sites and facilities.",
+    description: "Comprehensive security services for sites and facilities.",
     postedDate: "2024-11-18",
   },
   {

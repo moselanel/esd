@@ -3,10 +3,13 @@
 import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Progress } from "@/components/ui/progress"
 import { Slider } from "@/components/ui/slider"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   TrendingUp,
   Users,
@@ -21,7 +24,17 @@ import {
   TrendingUpIcon,
   ShoppingCart,
   GraduationCap,
+  FileText,
+  Download,
+  Calculator,
+  PieChart as PieChartIcon,
+  CheckCircle2,
+  Clock,
+  Star,
+  ChevronRight,
+  Settings,
 } from "lucide-react"
+import Link from "next/link"
 import {
   LineChart,
   Line,
@@ -38,6 +51,8 @@ import {
   ResponsiveContainer,
   Area,
   AreaChart,
+  RadialBarChart,
+  RadialBar,
 } from "recharts"
 
 const monthlySpendData = [
@@ -99,7 +114,7 @@ const currentMonthIndex = 10 // November (0-indexed)
 const currentMonthData = monthlySpendTrackingData[currentMonthIndex]
 
 const COLORS = [
-  "hsl(190, 85%, 50%)", // Cyan - matches Bauba branding
+  "hsl(190, 85%, 50%)", // Cyan - primary accent
   "hsl(220, 85%, 60%)", // Blue
   "hsl(280, 65%, 60%)", // Purple
   "hsl(160, 70%, 50%)", // Teal
@@ -168,12 +183,75 @@ const journeyProgressionData = [
 
 const JOURNEY_COLORS = ["#22d3ee", "#10b981", "#f59e0b", "#8b5cf6", "#ef4444"]
 
+// Programme data
+const programmesData = [
+  {
+    id: 1,
+    name: "Equipment Supplier Development",
+    status: "Active",
+    suppliers: 45,
+    budget: 2500000,
+    spent: 1850000,
+    startDate: "2024-01-15",
+    endDate: "2024-12-31",
+  },
+  {
+    id: 2,
+    name: "Women-Owned Business Incubation",
+    status: "Active",
+    suppliers: 28,
+    budget: 1200000,
+    spent: 980000,
+    startDate: "2024-03-01",
+    endDate: "2025-02-28",
+  },
+  {
+    id: 3,
+    name: "Youth Enterprise Accelerator",
+    status: "Active",
+    suppliers: 35,
+    budget: 1500000,
+    spent: 1120000,
+    startDate: "2024-02-15",
+    endDate: "2024-11-30",
+  },
+  {
+    id: 4,
+    name: "Transport & Logistics Capacity Building",
+    status: "Planning",
+    suppliers: 0,
+    budget: 1800000,
+    spent: 0,
+    startDate: "2025-01-01",
+    endDate: "2025-12-31",
+  },
+]
+
+// B-BBEE Scorecard data
+const scorecardData = [
+  { element: "Ownership", weight: 25, target: 25, actual: 22.5, fill: "#22d3ee" },
+  { element: "Management Control", weight: 19, target: 19, actual: 16.5, fill: "#10b981" },
+  { element: "Skills Development", weight: 20, target: 20, actual: 18.2, fill: "#f59e0b" },
+  { element: "Enterprise & Supplier Dev", weight: 40, target: 40, actual: 38.5, fill: "#8b5cf6" },
+  { element: "Socio-Economic Dev", weight: 5, target: 5, actual: 4.8, fill: "#ef4444" },
+]
+
+// ROI scenario data
+const roiScenarios = [
+  { name: "Conservative", multiplier: 2.5, jobs: 850, revenue: 45000000 },
+  { name: "Moderate", multiplier: 3.2, jobs: 1100, revenue: 58000000 },
+  { name: "Optimistic", multiplier: 4.0, jobs: 1400, revenue: 72000000 },
+]
+
 export default function DashboardPage() {
   const [dateRange, setDateRange] = useState("ytd")
   const [region, setRegion] = useState("all")
   const [supplierType, setSupplierType] = useState("all")
   const [bwoIncrease, setBwoIncrease] = useState([0])
   const [trackingView, setTrackingView] = useState<"monthly" | "ytd">("ytd")
+  const [roiTab, setRoiTab] = useState("simple")
+  const [roiInvestment, setRoiInvestment] = useState("5000000")
+  const [roiScenario, setRoiScenario] = useState("moderate")
 
   const ytdActual = currentMonthData.cumulative
   const ytdTarget = currentMonthData.cumulativeTarget
@@ -196,8 +274,26 @@ export default function DashboardPage() {
   const bwoSpend = 18500000
   const activeSuppliers = 1247
   const jobsSupported = 5680
+  const totalSkillsSpend = 1850000
+  const employeesTrained = 156
 
   const predictedImpact = Math.round(bwoSpend * (1 + bwoIncrease[0] / 100) - bwoSpend)
+
+  // Calculate ROI metrics
+  const selectedScenario = roiScenarios.find(s => s.name.toLowerCase() === roiScenario) || roiScenarios[1]
+  const investmentAmount = parseFloat(roiInvestment) || 0
+  const calculatedROI = (investmentAmount * selectedScenario.multiplier - investmentAmount)
+  const calculatedJobs = Math.round((investmentAmount / 5000000) * selectedScenario.jobs)
+  const calculatedRevenue = Math.round((investmentAmount / 5000000) * selectedScenario.revenue)
+
+  // Calculate B-BBEE total score
+  const totalActualScore = scorecardData.reduce((acc, item) => acc + item.actual, 0)
+  const maxScore = 109
+
+  const handleExportBoardReport = () => {
+    // In a real app, this would generate a PDF/DOCX report
+    alert("Board report export initiated. This would generate a comprehensive PDF report with all dashboard metrics, charts, and analysis.")
+  }
 
   return (
     <div className="min-h-screen bg-muted/30 py-12">
@@ -245,8 +341,128 @@ export default function DashboardPage() {
                 <SelectItem value="women">Women-Owned</SelectItem>
               </SelectContent>
             </Select>
+
+            <Button variant="outline" onClick={handleExportBoardReport}>
+              <Download className="w-4 h-4 mr-2" />
+              Board Report
+            </Button>
+
+            <Link href="/settings">
+              <Button variant="ghost" size="icon">
+                <Settings className="w-4 h-4" />
+              </Button>
+            </Link>
           </div>
         </div>
+
+        {/* B-BBEE Scorecard Panel */}
+        <Card className="mb-8 border-2 border-accent/30 shadow-lg">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-xl flex items-center gap-2">
+                  <PieChartIcon className="w-6 h-6 text-accent" />
+                  B-BBEE Scorecard Overview
+                </CardTitle>
+                <CardDescription>Current period performance against B-BBEE targets</CardDescription>
+              </div>
+              <div className="text-right">
+                <p className="text-3xl font-bold text-accent">{totalActualScore.toFixed(1)}</p>
+                <p className="text-sm text-muted-foreground">Level 2 Contributor</p>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-5 gap-4">
+              {scorecardData.map((item) => (
+                <Card key={item.element} className="border">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm font-medium">{item.element}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2">
+                      <div className="flex items-end gap-1">
+                        <span className="text-2xl font-bold" style={{ color: item.fill }}>{item.actual}</span>
+                        <span className="text-sm text-muted-foreground">/ {item.weight}</span>
+                      </div>
+                      <Progress value={(item.actual / item.weight) * 100} className="h-2" />
+                      <p className="text-xs text-muted-foreground">
+                        {((item.actual / item.weight) * 100).toFixed(0)}% of target
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <div className="mt-4 flex justify-end">
+              <Link href="/settings">
+                <Button variant="link" className="text-accent">
+                  Configure Sector Code & Targets <ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Programmes Section */}
+        <Card className="mb-8 border-2 border-accent/30 shadow-lg">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-xl flex items-center gap-2">
+                  <Briefcase className="w-6 h-6 text-accent" />
+                  ESD Programmes
+                </CardTitle>
+                <CardDescription>Active supplier development programmes and their progress</CardDescription>
+              </div>
+              <Button>
+                <Sparkles className="w-4 h-4 mr-2" />
+                New Programme
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-4">
+              {programmesData.map((programme) => {
+                const progress = programme.budget > 0 ? (programme.spent / programme.budget) * 100 : 0
+                return (
+                  <Card key={programme.id} className="border">
+                    <CardHeader className="pb-2">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <CardTitle className="text-base">{programme.name}</CardTitle>
+                          <p className="text-sm text-muted-foreground mt-1">
+                            {new Date(programme.startDate).toLocaleDateString("en-ZA", { month: "short", year: "numeric" })} - {new Date(programme.endDate).toLocaleDateString("en-ZA", { month: "short", year: "numeric" })}
+                          </p>
+                        </div>
+                        <Badge className={
+                          programme.status === "Active" 
+                            ? "bg-green-500/10 text-green-700 border-green-500/30"
+                            : "bg-blue-500/10 text-blue-700 border-blue-500/30"
+                        }>
+                          {programme.status}
+                        </Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-muted-foreground">Suppliers Enrolled</span>
+                        <span className="font-medium">{programme.suppliers}</span>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-muted-foreground">Budget Utilisation</span>
+                          <span className="font-medium">R {(programme.spent / 1000000).toFixed(1)}M / R {(programme.budget / 1000000).toFixed(1)}M</span>
+                        </div>
+                        <Progress value={progress} className="h-2" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+            </div>
+          </CardContent>
+        </Card>
 
         <Card className="mb-8 border-2 border-accent/30 shadow-lg">
           <CardHeader>
@@ -732,7 +948,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* KPI Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-4 md:gap-6 mb-8">
           <Card className="border-2">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm text-muted-foreground font-normal">Total ESD Spend</CardTitle>
@@ -803,6 +1019,21 @@ export default function DashboardPage() {
                 <div>
                   <p className="text-2xl font-bold">{jobsSupported.toLocaleString()}</p>
                   <p className="text-xs text-muted-foreground">+8% vs LY</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-2 border-accent/30">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm text-muted-foreground font-normal">Skills Development</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-2">
+                <GraduationCap className="w-5 h-5 text-accent" />
+                <div>
+                  <p className="text-2xl font-bold">R {(totalSkillsSpend / 1000000).toFixed(1)}M</p>
+                  <p className="text-xs text-muted-foreground">{employeesTrained} trained</p>
                 </div>
               </div>
             </CardContent>
@@ -1045,51 +1276,169 @@ export default function DashboardPage() {
           </Card>
         </div>
 
-        {/* Scenario Planning Widget */}
-        <Card className="border-2 border-accent/20">
+        {/* Expanded ROI Modelling Widget */}
+        <Card className="border-2 border-accent/20 mb-6">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5" />
-              Transformation Scenario Planning
+              <Calculator className="w-5 h-5" />
+              ESD ROI Calculator & Scenario Planning
             </CardTitle>
+            <CardDescription>Model the impact of your ESD investments</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <label className="text-sm font-medium">
-                  Increase BWO Spend by: <span className="text-accent">{bwoIncrease[0]}%</span>
-                </label>
-                <span className="text-sm text-muted-foreground">Current: R {(bwoSpend / 1000000).toFixed(0)}M</span>
-              </div>
+            <Tabs value={roiTab} onValueChange={setRoiTab}>
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="simple">Simple Scenario</TabsTrigger>
+                <TabsTrigger value="advanced">Advanced Modelling</TabsTrigger>
+              </TabsList>
 
-              <Slider value={bwoIncrease} onValueChange={setBwoIncrease} max={50} step={5} className="py-4" />
+              <TabsContent value="simple" className="space-y-6">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm font-medium">
+                      Increase BWO Spend by: <span className="text-accent">{bwoIncrease[0]}%</span>
+                    </label>
+                    <span className="text-sm text-muted-foreground">Current: R {(bwoSpend / 1000000).toFixed(0)}M</span>
+                  </div>
 
-              <div className="bg-accent/10 border border-accent/20 rounded-lg p-6">
-                <div className="text-center">
-                  <p className="text-sm text-muted-foreground mb-2">Predicted Additional Impact</p>
-                  <p className="text-3xl font-bold text-accent">+R {(predictedImpact / 1000000).toFixed(1)}M</p>
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Est. {Math.round((predictedImpact / bwoSpend) * 1000)} additional jobs created
+                  <Slider value={bwoIncrease} onValueChange={setBwoIncrease} max={50} step={5} className="py-4" />
+
+                  <div className="bg-accent/10 border border-accent/20 rounded-lg p-6">
+                    <div className="text-center">
+                      <p className="text-sm text-muted-foreground mb-2">Predicted Additional Impact</p>
+                      <p className="text-3xl font-bold text-accent">+R {(predictedImpact / 1000000).toFixed(1)}M</p>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        Est. {Math.round((predictedImpact / bwoSpend) * 1000)} additional jobs created
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-3 gap-4 text-sm">
+                  <div className="text-center p-3 bg-muted/50 rounded-lg">
+                    <p className="text-muted-foreground mb-1">New BWO Target</p>
+                    <p className="text-lg font-bold">R {((bwoSpend + predictedImpact) / 1000000).toFixed(0)}M</p>
+                  </div>
+                  <div className="text-center p-3 bg-muted/50 rounded-lg">
+                          <p className="text-muted-foreground mb-1">Sector Code Alignment</p>
+                    <p className="text-lg font-bold text-accent">
+                      {Math.min(100, Math.round(((bwoSpend + predictedImpact) / totalSpend) * 100))}%
+                    </p>
+                  </div>
+                  <div className="text-center p-3 bg-muted/50 rounded-lg">
+                    <p className="text-muted-foreground mb-1">Target Suppliers</p>
+                    <p className="text-lg font-bold">+{Math.round((predictedImpact / bwoSpend) * activeSuppliers * 0.1)}</p>
+                  </div>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="advanced" className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label>Investment Amount (R)</Label>
+                      <Input
+                        type="number"
+                        value={roiInvestment}
+                        onChange={(e) => setRoiInvestment(e.target.value)}
+                        placeholder="5000000"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label>Scenario</Label>
+                      <Select value={roiScenario} onValueChange={setRoiScenario}>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="conservative">Conservative (2.5x multiplier)</SelectItem>
+                          <SelectItem value="moderate">Moderate (3.2x multiplier)</SelectItem>
+                          <SelectItem value="optimistic">Optimistic (4.0x multiplier)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <Card className="bg-accent/5 border-accent/20">
+                    <CardHeader className="pb-2">
+                      <CardTitle className="text-sm">Projected Outcomes</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Total Economic Impact</span>
+                        <span className="text-lg font-bold text-accent">R {(calculatedROI / 1000000).toFixed(1)}M</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Jobs Created</span>
+                        <span className="text-lg font-bold">{calculatedJobs.toLocaleString()}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Supplier Revenue Generated</span>
+                        <span className="text-lg font-bold">R {(calculatedRevenue / 1000000).toFixed(1)}M</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">ROI Multiplier</span>
+                        <span className="text-lg font-bold">{selectedScenario.multiplier}x</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <div className="bg-muted/50 border rounded-lg p-4">
+                  <p className="text-sm text-muted-foreground">
+                      <strong>Note:</strong> ROI calculations are based on industry benchmarks for ESD investments.
+                    Actual results may vary based on programme implementation, supplier capacity, and market conditions.
+                    The multiplier effect includes direct, indirect, and induced economic impacts.
                   </p>
                 </div>
-              </div>
-            </div>
+              </TabsContent>
+            </Tabs>
+          </CardContent>
+        </Card>
 
-            <div className="grid md:grid-cols-3 gap-4 text-sm">
-              <div className="text-center p-3 bg-muted/50 rounded-lg">
-                <p className="text-muted-foreground mb-1">New BWO Target</p>
-                <p className="text-lg font-bold">R {((bwoSpend + predictedImpact) / 1000000).toFixed(0)}M</p>
-              </div>
-              <div className="text-center p-3 bg-muted/50 rounded-lg">
-                <p className="text-muted-foreground mb-1">Mining Charter Alignment</p>
-                <p className="text-lg font-bold text-accent">
-                  {Math.min(100, Math.round(((bwoSpend + predictedImpact) / totalSpend) * 100))}%
-                </p>
-              </div>
-              <div className="text-center p-3 bg-muted/50 rounded-lg">
-                <p className="text-muted-foreground mb-1">Target Suppliers</p>
-                <p className="text-lg font-bold">+{Math.round((predictedImpact / bwoSpend) * activeSuppliers * 0.1)}</p>
-              </div>
+        {/* Quick Links */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Quick Actions</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-4 gap-4">
+              <Link href="/preferred-suppliers">
+                <Card className="border hover:border-accent/50 transition-colors cursor-pointer">
+                  <CardContent className="pt-6 text-center">
+                    <Star className="w-8 h-8 mx-auto mb-2 text-accent" />
+                    <p className="font-medium">Preferred Suppliers</p>
+                    <p className="text-sm text-muted-foreground">Manage approved list</p>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link href="/supplier-portal">
+                <Card className="border hover:border-accent/50 transition-colors cursor-pointer">
+                  <CardContent className="pt-6 text-center">
+                    <Users className="w-8 h-8 mx-auto mb-2 text-accent" />
+                    <p className="font-medium">Supplier Portal</p>
+                    <p className="text-sm text-muted-foreground">Self-service view</p>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link href="/settings">
+                <Card className="border hover:border-accent/50 transition-colors cursor-pointer">
+                  <CardContent className="pt-6 text-center">
+                    <Settings className="w-8 h-8 mx-auto mb-2 text-accent" />
+                    <p className="font-medium">Settings</p>
+                    <p className="text-sm text-muted-foreground">Configure platform</p>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link href="/opportunities">
+                <Card className="border hover:border-accent/50 transition-colors cursor-pointer">
+                  <CardContent className="pt-6 text-center">
+                    <Briefcase className="w-8 h-8 mx-auto mb-2 text-accent" />
+                    <p className="font-medium">Opportunities</p>
+                    <p className="text-sm text-muted-foreground">Active tenders</p>
+                  </CardContent>
+                </Card>
+              </Link>
             </div>
           </CardContent>
         </Card>

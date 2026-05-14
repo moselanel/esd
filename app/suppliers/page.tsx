@@ -19,7 +19,7 @@ import { Building2, MapPin, Star, Search, Filter, X } from "lucide-react"
 const suppliers = [
   {
     id: 1,
-    name: "African Mining Supplies",
+    name: "African Industrial Supplies",
     category: "Equipment Supply",
     location: "Limpopo",
     rating: 4.8,
@@ -32,7 +32,7 @@ const suppliers = [
   },
   {
     id: 2,
-    name: "Platinum Transport Services",
+    name: "Premier Transport Services",
     category: "Transport & Logistics",
     location: "North West",
     rating: 4.6,

@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Building2, Users, LayoutDashboard, Briefcase, Home, Menu, X, Layers } from "lucide-react"
+import { Building2, Users, LayoutDashboard, Briefcase, Home, Menu, X, Layers, Star, Settings } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 
@@ -15,8 +15,10 @@ export function Navigation() {
     { href: "/", label: "Home", icon: Home },
     { href: "/onboard", label: "Onboard Supplier", icon: Users },
     { href: "/suppliers", label: "Suppliers", icon: Building2 },
+    { href: "/preferred-suppliers", label: "Preferred", icon: Star },
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/opportunities", label: "Opportunities", icon: Briefcase },
+    { href: "/settings", label: "Settings", icon: Settings },
   ]
 
   return (

@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   title: "ESD Platform - Enterprise & Supplier Development",
   description:
     "Comprehensive platform for managing SMME onboarding, supplier development, and transformation impact reporting",
-  generator: "v0.app",
   icons: {
     icon: [
       {
@@ -30,6 +29,7 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png",
   },
+    generator: 'v0.app'
 }
 
 export default function RootLayout({

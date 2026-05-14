@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Building2, Users, LayoutDashboard, Briefcase, Home, Menu, X, Layers } from "lucide-react"
+import { Building2, Users, LayoutDashboard, Briefcase, Home, Menu, X, Layers, Star, Settings } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 
